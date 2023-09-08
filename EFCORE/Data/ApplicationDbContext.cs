@@ -1,4 +1,5 @@
 ﻿using EFCORE.Models;
+using EFCORE.Models.Configurations.Seeding;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -20,7 +21,7 @@ namespace EFCORE.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-            
+            InitialSeeding.seed(modelBuilder);
         }
 
         public DbSet<Genre> Genres{ get; set; } 

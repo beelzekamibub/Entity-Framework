@@ -4,7 +4,7 @@ namespace EFCORE.Models.Configurations.Seeding
 {
     public class InitialSeeding
     {
-        public void seed(ModelBuilder modelBuilder)
+        public static void seed(ModelBuilder modelBuilder)
         {
             var samlueljackson = new Actor()
             {
@@ -57,13 +57,15 @@ namespace EFCORE.Models.Configurations.Seeding
                 }
             );
 
-            var samuelavengers=new MovieActor()
+            var samuelavengers = new MovieActor()
             {
                 ActorId = samlueljackson.Id,
-                MovieId=avengers.Id,
-                Order=2,
-                Character="nick fury"
-            }
+                MovieId = avengers.Id,
+                Order = 2,
+                Character = "nick fury"
+            };
+
+            modelBuilder.Entity<MovieActor>().HasData(samuelavengers);  
         }
     }
 }

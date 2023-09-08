@@ -3,6 +3,7 @@ using EFCORE.Data;
 using EFCORE.Models;
 using EFCORE.Models.DTOs;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EFCORE.Controllers
 {
@@ -17,6 +18,12 @@ namespace EFCORE.Controllers
         {
             _dbContext = dbContext;
             _mapper = mapper;
+        }
+
+        [HttpGet("getallgenre")]
+        public async Task<ActionResult<IEnumerable<Genre>>> GetAllGenre()
+        {
+            return await _dbContext.Genres.ToListAsync();
         }
 
         [HttpPost]
