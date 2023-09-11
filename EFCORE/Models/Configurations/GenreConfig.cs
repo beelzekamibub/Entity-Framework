@@ -13,6 +13,8 @@ namespace EFCORE.Models.Configurations
             var scifi = new Genre() {GenreId=5, Name="Science fiction" };
             var animation = new Genre() { GenreId = 6, Name = "Animation" };
             builder.HasData(scifi,animation);
+
+            builder.HasIndex(p=>p.Name).IsUnique();
         }
     }
 }

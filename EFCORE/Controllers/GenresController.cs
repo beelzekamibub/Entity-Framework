@@ -41,5 +41,23 @@ namespace EFCORE.Controllers
             await _dbContext.SaveChangesAsync();
             return Ok();
         }
+        [HttpPut("{id:int}/name2")]
+        public async Task<ActionResult> Put(int id)
+        {
+            var genre = await _dbContext.Genres.FirstOrDefaultAsync(x => x.GenreId == id);
+            if (genre == null) { return NotFound(); }
+            genre.Name += "2";
+            await _dbContext.SaveChangesAsync();
+            return Ok(); 
+        }
+
+        [HttpDelete("{id:int}/newwaytodelete")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var AlteredRows = await _dbContext.Genres.Where(x => x.GenreId == id).ExecuteDeleteAsync();
+            //this returns the number of rows that were deleted in the database
+            if(AlteredRows==0) return NotFound();
+            return Ok();
+        }
     }
 }
